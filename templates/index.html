@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Ink Studio | Handwriting Generator</title>
+    <meta name="description" content="Transform your typed text into beautiful, realistic handwriting with Neo Ink Studio.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Neo Ink Studio</h1>
+            <p>Transform your text into beautiful handwriting</p>
+        </header>
+        
+        <main class="dashboard">
+            <section class="controls-section glass-card">
+                <h2>Customization</h2>
+                <form id="generate-form">
+                    <div class="input-group">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <label for="text-input" style="margin-bottom: 0;">Your Text</label>
+                            <button type="button" id="load-sample-btn" class="secondary-btn" style="padding: 0.2rem 0.6rem; font-size: 0.8rem;">Load Sample Text</button>
+                        </div>
+                        <textarea id="text-input" placeholder="Type something here..." maxlength="1000" required></textarea>
+                        <div class="char-count"><span id="count">0</span> / 1000</div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="style-select">Handwriting Style</label>
+                        <select id="style-select">
+                            <option value="Student Notes">Student Notes</option>
+                            <option value="Cursive Elegant">Cursive Elegant</option>
+                            <option value="Exam Sheet">Exam Sheet</option>
+                            <option value="Journal Writing">Journal Writing</option>
+                            <option value="Vintage Script">Vintage Script</option>
+                            <option value="Casual Marker">Casual Marker</option>
+                            <option value="Architect Draft">Architect Draft</option>
+                            <option value="Neat Print">Neat Print</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="bg-select">Paper Background</label>
+                        <select id="bg-select">
+                            <option value="White Paper">White Paper</option>
+                            <option value="Ruled Notebook">Ruled Notebook</option>
+                            <option value="Graph Paper">Graph Paper</option>
+                            <option value="A4 Exam Paper">A4 Exam Paper</option>
+                        </select>
+                    </div>
+                    
+                    <div class="sliders">
+                        <div class="slider-group">
+                            <label for="font-size">Font Size: <span id="font-size-val">32</span>px</label>
+                            <input type="range" id="font-size" min="20" max="60" value="32">
+                        </div>
+                        
+                        <div class="slider-group">
+                            <label for="word-spacing">Word Spacing: <span id="word-spacing-val">0</span>px</label>
+                            <input type="range" id="word-spacing" min="-5" max="20" value="0">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="generate-btn" class="primary-btn">
+                        <span class="btn-text">Generate Handwriting</span>
+                        <span class="loader hidden"></span>
+                    </button>
+                </form>
+            </section>
+            
+            <section class="preview-section glass-card">
+                <div class="preview-header">
+                    <h2>Live Preview</h2>
+                    <button id="download-btn" class="secondary-btn hidden" disabled>Download Image</button>
+                </div>
+                <div class="preview-container">
+                    <div id="preview-placeholder">
+                        <p>Your generated handwriting will appear here</p>
+                    </div>
+                    <img id="preview-img" class="hidden" alt="Generated Handwriting" />
+                </div>
+            </section>
+        </main>
+        
+        <section class="history-section glass-card hidden" id="history-container">
+            <h2>Recent Generations</h2>
+            <div class="history-grid" id="history-grid">
+                <!-- History items will be injected here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

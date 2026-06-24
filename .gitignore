@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+venv/
+env/
+download_fonts.py
